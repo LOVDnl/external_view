@@ -88,8 +88,8 @@ class LOVD_ExternalView {
               '  <INPUT type="hidden" name="order" value=",">' . "\n");
 
         // Skipping (permanently hiding) columns.
-        foreach ($aViewListSettings['cols_to_skip'] as $sCol) {
-            print('  <INPUT type="hidden" name="skip[' . $sCol . ']" value="1">' . "\n");
+        foreach (array_keys($aViewListSettings['cols_to_skip']) as $sCol) {
+            print('  <INPUT type="hidden" name="skip[' . $sCol . ']" value="' . $sCol . '">' . "\n");
         }
 
         foreach ($aViewListSettings['search'] as $key => $val) {
@@ -110,7 +110,7 @@ class LOVD_ExternalView {
 
 
 
-    public function viewFullData ($sGene, $nTranscriptID)
+    public function viewFullData ($sGene, $nTranscriptID, $aUserSettings = array())
     {
         // Show the "full data view" of a certain gene with a certain
         //  transcript (its internal ID in that LOVD).
@@ -126,12 +126,17 @@ class LOVD_ExternalView {
             'viewlistid' => 'CustomVL_VIEW',
             'object' => 'Custom_ViewList',
             'object_id' => 'VariantOnTranscript,VariantOnGenome,Screening,Individual',
-            'cols_to_skip' => array('chromosome'),
+            'cols_to_skip' => array(
+                'chromosome' => 1,
+            ),
             'id' => $sGene,
             'search' => array(
                 'transcriptid' => $nTranscriptID,
             ),
         );
+
+        $aViewListSettings = array_replace_recursive(
+            $aViewListSettings, $aUserSettings);
 
         return $this->viewData($aViewListSettings);
     }
@@ -140,7 +145,7 @@ class LOVD_ExternalView {
 
 
 
-    public function viewIndividuals ()
+    public function viewIndividuals ($aUserSettings = array())
     {
         // Show the individuals.
 
@@ -151,6 +156,9 @@ class LOVD_ExternalView {
             'search' => array(),
         );
 
+        $aViewListSettings = array_replace_recursive(
+            $aViewListSettings, $aUserSettings);
+
         return $this->viewData($aViewListSettings);
     }
 
@@ -158,7 +166,7 @@ class LOVD_ExternalView {
 
 
 
-    public function viewPhenotypes ($nDiseaseID)
+    public function viewPhenotypes ($nDiseaseID, $aUserSettings = array())
     {
         // Show the phenotypes of a certain disease
         //  (its internal ID in that LOVD).
@@ -174,11 +182,17 @@ class LOVD_ExternalView {
             'viewlistid' => 'viewlistForm_Phenotypes_for_Disease_' . $nDiseaseID,
             'object' => 'Phenotype',
             'object_id' => $nDiseaseID,
-            'cols_to_skip' => array('diseaseid', 'individualid'),
+            'cols_to_skip' => array(
+                'diseaseid' => 1,
+                'individualid' => 1,
+            ),
             'search' => array(
                 'diseaseid' => $nDiseaseID,
             ),
         );
+
+        $aViewListSettings = array_replace_recursive(
+            $aViewListSettings, $aUserSettings);
 
         return $this->viewData($aViewListSettings);
     }
