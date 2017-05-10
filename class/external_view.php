@@ -123,7 +123,7 @@ class LOVD_ExternalView {
         //  data will be shown.
 
         $aViewListSettings = array(
-            'viewlistid' => 'CustomVL_VIEW',
+            'viewlistid' => 'CustomVL_VIEW_' . $sGene,
             'object' => 'Custom_ViewList',
             'object_id' => 'VariantOnTranscript,VariantOnGenome,Screening,Individual',
             'cols_to_skip' => array(
@@ -188,6 +188,42 @@ class LOVD_ExternalView {
             ),
             'search' => array(
                 'diseaseid' => $nDiseaseID,
+            ),
+        );
+
+        $aViewListSettings = array_replace_recursive(
+            $aViewListSettings, $aUserSettings);
+
+        return $this->viewData($aViewListSettings);
+    }
+
+
+
+
+
+    public function viewVariants ($sGene, $nTranscriptID, $aUserSettings = array())
+    {
+        // Show the variants of a certain gene with a certain
+        //  transcript (its internal ID in that LOVD).
+
+        if (!isset($sGene) || !isset($nTranscriptID)) {
+            return false;
+        }
+
+        // We won't know if the gene and transcript exist; if not, simply no
+        //  data will be shown.
+
+        $aViewListSettings = array(
+            'viewlistid' => 'CustomVL_VOT_VOG_' . $sGene,
+            'object' => 'Custom_ViewList',
+            'object_id' => 'VariantOnTranscript,VariantOnGenome',
+            'cols_to_skip' => array(
+                'chromosome' => 1,
+                'allele_' => 1,
+            ),
+            'id' => $sGene,
+            'search' => array(
+                'transcriptid' => $nTranscriptID,
             ),
         );
 
