@@ -33,7 +33,7 @@ require './inc-init.php';
 // Load the remote Javascript libraries.
 $aFilesToLoad = array(
     'lib/jQuery/jquery.min.js',
-    'inc-js-viewlist.php',
+    'inc-js-viewlist.php?nohistory', // Add ?nohistory to prevent VLs messing with each other through the hash.
     'inc-js-tooltip.php',
 );
 
