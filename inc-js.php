@@ -32,6 +32,7 @@ require './inc-init.php';
 
 // Load the remote Javascript libraries.
 $aFilesToLoad = array(
+    'lib/jQuery/jquery.min.js',
     'inc-js-viewlist.php',
     'inc-js-tooltip.php',
 );

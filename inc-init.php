@@ -35,6 +35,7 @@ if (!defined('ROOT_PATH')) {
 
 // Require library standard functions.
 require ROOT_PATH . 'inc-lib-init.php';
+require ROOT_PATH . 'class/external_view.php';
 
 // DMD_SPECIFIC!!! - Testing purposes only.
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
@@ -63,35 +64,13 @@ $_SETT =
     array(
         // Make sure you fully trust this LOVD instance, because we'll be loading scripts from their site.
         'LOVD_URL' => 'http://databases.lovd.nl/shared/',
-        'views' =>
-            array(
-                'individuals' =>
-                    array(
-                        'title' => 'View Individuals',
-                        'viewlistid' => 'Individuals',
-                        'object' => 'Individual',
-                        'cols_to_skip' => array(),
-                    ),
-                'full_data_view' =>
-                    array(
-                        'title' => 'Full data view',
-                        'viewlistid' => 'CustomVL_VIEW',
-                        'object' => 'Custom_ViewList',
-                        'object_id' => 'VariantOnTranscript,VariantOnGenome,Screening,Individual',
-                        'cols_to_skip' => array('chromosome'),
-                    ),
-                'phenotypes' =>
-                    array(
-                        'title' => 'View phenotypes',
-                        'viewlistid' => 'viewlistForm_Phenotypes',
-                        'object' => 'Phenotype',
-                        'cols_to_skip' => array('diseaseid', 'individualid'),
-                    ),
-            ),
          );
 
 // Complete version info.
 if (substr($_SETT['LOVD_URL'], -1) != '/') {
     $_SETT['LOVD_URL'] .= '/';
 }
+
+// Initialize.
+$_LOVD = new LOVD_ExternalView();
 ?>
