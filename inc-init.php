@@ -34,7 +34,7 @@ if (!defined('ROOT_PATH')) {
 }
 
 // Require library standard functions.
-require ROOT_PATH . 'inc-lib-init.php';
+require ROOT_PATH . 'inc-lib.php';
 require ROOT_PATH . 'class/external_view.php';
 
 // DMD_SPECIFIC!!! - Testing purposes only.
