@@ -4,7 +4,7 @@
  * LEIDEN OPEN VARIATION DATABASE (LOVD)
  *
  * Created     : 2017-05-10
- * Modified    : 2017-05-10
+ * Modified    : 2017-05-11
  * For LOVD    : 3.0-19
  *
  * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
@@ -85,6 +85,8 @@ class LOVD_ExternalView {
                   '  <INPUT type="hidden" name="object_id" value="' . $aViewListSettings['object_id'] . '">' . "\n") . // The ID of the gene for VOT viewLists, the ID of the disease for phenotype viewLists, the object list for custom viewLists.
               (!isset($aViewListSettings['id'])? '' :
                   '  <INPUT type="hidden" name="id" value="' . $aViewListSettings['id'] . '">' . "\n") . // The ID of the VOG for VOT viewLists, the ID of the individual for phenotype viewLists, the (optional) gene for custom viewLists.
+              (!isset($aViewListSettings['page_size'])? '' :
+                  '  <INPUT type="hidden" name="page_size" value="' . $aViewListSettings['page_size'] . '">' . "\n") . // Will be overwritten by the selection list box later.
               '  <INPUT type="hidden" name="order" value=",">' . "\n");
 
         // Skipping (permanently hiding) columns.
@@ -110,7 +112,33 @@ class LOVD_ExternalView {
 
 
 
-    public function viewFullData ($sGene, $nTranscriptID, $aUserSettings = array())
+    public function viewFullData ($aUserSettings = array())
+    {
+        // Show the "full data view", not filtered on gene or transcript.
+        // This overview is very, very large, when not filtered, and LOVD itself
+        //  doesn't use it.
+
+        $aViewListSettings = array(
+            'viewlistid' => 'CustomVL_VIEW',
+            'object' => 'Custom_ViewList',
+            'object_id' => 'Transcript,VariantOnTranscript,VariantOnGenome,Screening,Individual',
+            'cols_to_skip' => array(
+            ),
+            'search' => array(
+            ),
+        );
+
+        $aViewListSettings = array_replace_recursive(
+            $aViewListSettings, $aUserSettings);
+
+        return $this->viewData($aViewListSettings);
+    }
+
+
+
+
+
+    public function viewFullDataByGene ($sGene, $nTranscriptID, $aUserSettings = array())
     {
         // Show the "full data view" of a certain gene with a certain
         //  transcript (its internal ID in that LOVD).
