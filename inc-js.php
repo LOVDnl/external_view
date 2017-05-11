@@ -4,7 +4,7 @@
  * LEIDEN OPEN VARIATION DATABASE (LOVD)
  *
  * Created     : 2017-05-10
- * Modified    : 2017-05-10
+ * Modified    : 2017-05-11
  * For LOVD    : 3.0-19
  *
  * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
@@ -32,7 +32,7 @@ require './inc-init.php';
 
 // Load the remote Javascript libraries.
 $aFilesToLoad = array(
-    'lib/jQuery/jquery.min.js',
+//    'lib/jQuery/jquery.min.js',
     'inc-js-viewlist.php?nohistory', // Add ?nohistory to prevent VLs messing with each other through the hash.
     'inc-js-tooltip.php',
 );
