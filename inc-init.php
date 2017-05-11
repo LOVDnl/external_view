@@ -4,7 +4,7 @@
  * LEIDEN OPEN VARIATION DATABASE (LOVD)
  *
  * Created     : 2015-06-17
- * Modified    : 2017-05-10
+ * Modified    : 2017-05-11
  * For LOVD    : 3.0-19
  *
  * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
@@ -63,7 +63,7 @@ if ((!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PR
 $_SETT =
     array(
         // Make sure you fully trust this LOVD instance, because we'll be loading scripts from their site.
-        'LOVD_URL' => 'http://databases.lovd.nl/shared/',
+        'LOVD_URL' => 'https://databases.lovd.nl/shared/',
          );
 
 // Complete version info.
