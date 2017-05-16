@@ -1,4 +1,33 @@
 <?php
+/*******************************************************************************
+ *
+ * LEIDEN OPEN VARIATION DATABASE (LOVD)
+ *
+ * Created     : 2017-05-11
+ * Modified    : 2017-05-16
+ * For LOVD    : 3.0-19
+ *
+ * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
+ * Programmer  : Ivo F.A.C. Fokkema <I.F.A.C.Fokkema@LUMC.nl>
+ *
+ *
+ * This file is part of LOVD.
+ *
+ * LOVD is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * LOVD is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with LOVD.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *************/
+
 // Countries downloaded 2017-05-10 from https://www.iso.org/obp/ui/#iso:pub:PUB500001:en
 $aCountries = array(
     'AF' => 'Afghanistan',
@@ -314,9 +343,11 @@ require 'inc-init.php';
     </UL>
     <DIV id="tabs-1">
         <P style="text-align: center;">
-            This is a centralized resource for information on DNA variants identified in the population of <?php echo $aCountries[$sCountryCode]; ?>, built on the LOVD database system.
+            This resource automatically retrieves information from our <A href="https://databases.lovd.nl/shared/" target="_blank">LOVD3 shared installation</A>.
+            The information retrieved is based on the geographic information per country (here for <B><?php echo $aCountries[$sCountryCode]; ?></B>).<BR>
             <BR>
-            This system retrieves up-to-date information on all variants and individuals and is browsable by variants and individuals by origin of individual, or origin of submitter.<BR>
+            Variants shown are either linked to the country of origin of an <I>individual</I> (patient), or to the country of origin of the <I>submitter</I> of the data.
+            Note the difference: data from an <I>individual</I> in Germany can be submitted by a <I>submitter</I> from Belgium.<BR>
             <BR>
             Queries can be submitted by using the search boxes in the column's header.
         </P>
