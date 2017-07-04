@@ -67,7 +67,6 @@ class LOVD_ExternalView {
     {
         // The main function to load the external View List. Builds the needed
         //  environment, and sends the request to the internal system.
-        global $_SETT;
 
         if (!isset($aViewListSettings) || !is_array($aViewListSettings)) {
             return false;
