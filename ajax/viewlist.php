@@ -4,7 +4,7 @@
  * LEIDEN OPEN VARIATION DATABASE (LOVD)
  *
  * Created     : 2017-05-10
- * Modified    : 2017-05-10
+ * Modified    : 2017-07-04
  * For LOVD    : 3.0-19
  *
  * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
@@ -37,7 +37,7 @@ $aURL = parse_url($_SETT['LOVD_URL']);
 $sOutput = file_get_contents($_SETT['LOVD_URL'] . 'ajax/viewlist.php?' . $_SERVER['QUERY_STRING']);
 
 // Now, we need to replace the row links to the original database. They are relative in LOVDs.
-$sOutput = str_replace('window.location.href = \'/', 'window.location.href = \'' . $aURL['scheme'] . '://' . $aURL['host'] . '/', $sOutput);
+$sOutput = preg_replace('/href="(?!http)\/?/', 'href="' . $aURL['scheme'] . '://' . $aURL['host'] . '/', $sOutput);
 
 die($sOutput);
 ?>
