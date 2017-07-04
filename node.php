@@ -4,7 +4,7 @@
  * LEIDEN OPEN VARIATION DATABASE (LOVD)
  *
  * Created     : 2017-05-11
- * Modified    : 2017-05-16
+ * Modified    : 2017-05-17
  * For LOVD    : 3.0-19
  *
  * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
@@ -264,7 +264,7 @@ $aCountries = array(
     'UG' => 'Uganda',
     'UA' => 'Ukraine',
     'AE' => 'United Arab Emirates',
-    'GB' => 'United Kingdom of Great Britain and Northern Ireland',
+    'GB' => 'United Kingdom (Great Britain)',
     'UM' => 'United States Minor Outlying Islands',
     'US' => 'United States of America',
     'UY' => 'Uruguay',
