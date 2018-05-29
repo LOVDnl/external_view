@@ -37,7 +37,7 @@ $aURL = parse_url($_SETT['LOVD_URL']);
 $sOutput = file_get_contents($_SETT['LOVD_URL'] . 'ajax/viewlist.php?' . $_SERVER['QUERY_STRING']);
 
 // Now, we need to replace the row links to the original database. They are relative in LOVDs.
-$sOutput = str_replace('window.location.href = \'/', 'window.location.href = \'' . $aURL['scheme'] . '://' . $aURL['host'] . '/', $sOutput);
+$sOutput = str_replace('href="variants', 'href = "' . $aURL['scheme'] . '://' . $aURL['host'] . '/variants', $sOutput);  
 
 die($sOutput);
 ?>
