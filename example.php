@@ -6,6 +6,9 @@
   <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <META name="author" content="LOVD development team, LUMC, Netherlands">
   <META name="generator" content="PhpStorm @ GNU/Linux (Ubuntu)">
+  <SCRIPT src="//code.jquery.com/jquery-1.10.2.js"></SCRIPT>
+  <SCRIPT src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></SCRIPT>
+  <LINK rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </HEAD>
 
 <BODY style="margin : 10px;">
