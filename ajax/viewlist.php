@@ -4,10 +4,10 @@
  * LEIDEN OPEN VARIATION DATABASE (LOVD)
  *
  * Created     : 2017-05-10
- * Modified    : 2017-07-04
- * For LOVD    : 3.0-19
+ * Modified    : 2019-02-15
+ * For LOVD    : 3.0-22
  *
- * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
+ * Copyright   : 2004-2019 Leiden University Medical Center; http://www.LUMC.nl/
  * Programmer  : Ivo F.A.C. Fokkema <I.F.A.C.Fokkema@LUMC.nl>
  *
  *
@@ -37,7 +37,17 @@ $aURL = parse_url($_SETT['LOVD_URL']);
 $sOutput = file_get_contents($_SETT['LOVD_URL'] . 'ajax/viewlist.php?' . $_SERVER['QUERY_STRING']);
 
 // Now, we need to replace the row links to the original database. They are relative in LOVDs.
-$sOutput = preg_replace('/href="(?!http)\/?/', 'href="' . $aURL['scheme'] . '://' . $aURL['host'] . '/', $sOutput);
+// Replace links *not* starting with http. But, treat '/path/file' links differently from 'file' links...
+$sOutput = preg_replace(
+    array(
+        '/href="(?!http)\//', // Link starts with /, use as is, just add scheme and host.
+        '/href="(?!http)([^\/])/', // Link does *not* start with /, so needs also a path added to it.
+        ),
+    array(
+        'href="' . $aURL['scheme'] . '://' . $aURL['host'] . '/',
+        'href="' . $aURL['scheme'] . '://' . $aURL['host'] . $aURL['path'] . "$1",
+        ),
+    $sOutput);
 
 die($sOutput);
 ?>
