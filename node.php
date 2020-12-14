@@ -297,8 +297,17 @@ if (count($aHostNameParts) == 3 && strpos($_SERVER['HTTP_HOST'], '.lovd.org')) {
     }
 }
 if (!$sCountryCode) {
-    // Never received one, or couldn't map country to code.
-    exit;
+    // Never received one, or couldn't map country to code (www).
+    if (count($aHostNameParts) < 3 || $aHostNameParts[0] == 'www') {
+        // LOVD.org or www.LOVD.org -> send to the website.
+        header('Location: https://lovd.nl', true, 301);
+        exit;
+    } else {
+        // GENE.LOVD.org maybe? This enables *.lovd.org redirect to *.lovd.nl.
+        // databases.lovd.org, courses.lovd.org, etc.
+        header('Location: https://' . str_replace('.org', '.nl', $_SERVER['HTTP_HOST']), true, 301);
+        exit;
+    }
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
