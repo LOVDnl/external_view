@@ -334,7 +334,7 @@ if (!$sCountryCode) {
     <TR>
         <TD valign="top" align="center">
             <h5 style="margin-bottom : 1px;">Based on:</h5>
-            <IMG src="http://databases.lovd.nl/shared/gfx/LOVD_logo130x50.jpg" alt="LOVD3">
+            <IMG src="https://databases.lovd.nl/shared/gfx/LOVD_logo130x50.jpg" alt="LOVD3">
         </TD>
     </TR>
 </TABLE>
