@@ -4,10 +4,10 @@
  * LEIDEN OPEN VARIATION DATABASE (LOVD)
  *
  * Created     : 2015-06-17
- * Modified    : 2017-05-11
- * For LOVD    : 3.0-19
+ * Modified    : 2023-02-27
+ * For LOVD    : 3.0-29
  *
- * Copyright   : 2004-2017 Leiden University Medical Center; http://www.LUMC.nl/
+ * Copyright   : 2004-2023 Leiden University Medical Center; http://www.LUMC.nl/
  * Programmer  : Ivo F.A.C. Fokkema <I.F.A.C.Fokkema@LUMC.nl>
  *
  *
@@ -51,11 +51,9 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
 if ((!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') || (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || !empty($_SERVER['SSL_PROTOCOL'])) {
     // We're using SSL!
     define('SSL', true);
-    define('SSL_PROTOCOL', $_SERVER['SSL_PROTOCOL']);
     define('PROTOCOL', 'https://');
 } else {
     define('SSL', false);
-    define('SSL_PROTOCOL', '');
     define('PROTOCOL', 'http://');
 }
 
